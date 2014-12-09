@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="app_name">Gildit</string>
+  <string name="action_settings">Settings</string>
+  <string name="close">Close</string>
+  <string name="pick_subreddit">Pick subreddit</string>
+
+</resources>
