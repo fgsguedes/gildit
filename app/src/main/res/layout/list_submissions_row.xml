@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardElevation="5dp"
+    card_view:cardUseCompatPadding="true">
+
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="5dp">
+
+    <TextView
+        android:id="@+id/submissionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:text="@string/placeholder_submission_title"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:text="@string/placeholder_submitted_by"/>
+
+      <TextView
+          android:id="@+id/submissionAuthor"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:text="@string/placeholder_submission_creator"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:text="@string/to"/>
+
+      <TextView
+          android:id="@+id/submissionSubreddit"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:text="@string/placeholder_submission_subreddit"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <TextView
+          android:id="@+id/submissionComments"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:text="@string/placeholder_num_comments"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:text="@string/comments"/>
+
+      <TextView
+          android:id="@+id/shareSubmission"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:text="@string/share"/>
+
+      <TextView
+          android:id="@+id/saveSubmission"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:text="@string/save"/>
+
+      <TextView
+          android:id="@+id/hideSubmission"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:text="@string/hide"/>
+
+      <TextView
+          android:id="@+id/reportSubmission"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:text="@string/report"/>
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+</android.support.v7.widget.CardView>

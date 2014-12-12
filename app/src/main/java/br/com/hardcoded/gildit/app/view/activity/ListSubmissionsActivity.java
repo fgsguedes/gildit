@@ -1,4 +1,4 @@
-package br.com.hardcoded.gildit.app.activity;
+package br.com.hardcoded.gildit.app.view.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -13,13 +13,11 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
 import br.com.hardcoded.gildit.R;
+import br.com.hardcoded.gildit.app.view.adapter.SubmissionListAdapter;
 
 public class ListSubmissionsActivity extends FragmentActivity {
 
@@ -42,8 +40,12 @@ public class ListSubmissionsActivity extends FragmentActivity {
     public void onActivityCreated(Bundle savedInstanceState) {
       super.onActivityCreated(savedInstanceState);
 
-      setListAdapter(new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_2, null,
-          new String[]{"title", "selftext"}, new int[]{android.R.id.text1, android.R.id.text2}, 0));
+      setListAdapter(new SubmissionListAdapter(getActivity()));
+
+      getListView().setDivider(null);
+      getListView().setDividerHeight(0);
+
+      getListView().setDrawSelectorOnTop(true);
 
       getLoaderManager().initLoader(0, null, this);
     }

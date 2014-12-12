@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="placeholder_submission_title">Place holder text</string>
+  <string name="placeholder_submitted_by">submitted by</string>
+  <string name="placeholder_submission_domain">(self.androiddev)</string>
+  <string name="placeholder_submission_creator">fgsguedes</string>
+  <string name="placeholder_submission_subreddit">androiddev</string>
+  <string name="placeholder_num_comments">755</string>
+</resources>
