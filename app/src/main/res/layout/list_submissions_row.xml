@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,104 +9,119 @@
     card_view:cardUseCompatPadding="true">
 
   <LinearLayout
-      android:orientation="vertical"
+      android:orientation="horizontal"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:padding="5dp">
 
-    <TextView
-        android:id="@+id/submissionTitle"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/submissionThumbnail"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/thumbnail_exclamation"
+        android:contentDescription="@string/submissionThumbnail"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:text="@string/placeholder_submission_title"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:paddingStart="5dp"
+        tools:ignore="RtlSymmetry">
 
       <TextView
+          android:id="@+id/submissionTitle"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:textAppearance="@style/TextAppearance.AppCompat.Small"
-          android:text="@string/placeholder_submitted_by"/>
+          android:textAppearance="@style/TextAppearance.AppCompat.Title"
+          android:text="@string/placeholder_submission_title"/>
 
-      <TextView
-          android:id="@+id/submissionAuthor"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="5dp"
-          android:textAppearance="@style/TextAppearance.AppCompat.Small"
-          android:text="@string/placeholder_submission_creator"/>
+      <LinearLayout
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="5dp"
-          android:textAppearance="@style/TextAppearance.AppCompat.Small"
-          android:text="@string/to"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="@string/placeholder_submitted_by"/>
 
-      <TextView
-          android:id="@+id/submissionSubreddit"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="5dp"
-          android:textAppearance="@style/TextAppearance.AppCompat.Small"
-          android:text="@string/placeholder_submission_subreddit"/>
+        <TextView
+            android:id="@+id/submissionAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="@string/placeholder_submission_creator"/>
 
-    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="@string/to"/>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/submissionSubreddit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="@string/placeholder_submission_subreddit"/>
 
-      <TextView
-          android:id="@+id/submissionComments"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textAppearance="@style/TextAppearance.AppCompat.Small"
-          android:text="@string/placeholder_num_comments"/>
+      </LinearLayout>
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="5dp"
-          android:textAppearance="@style/TextAppearance.AppCompat.Small"
-          android:text="@string/comments"/>
+      <LinearLayout
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
 
-      <TextView
-          android:id="@+id/shareSubmission"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="5dp"
-          android:textAppearance="@style/TextAppearance.AppCompat.Small"
-          android:text="@string/share"/>
+        <TextView
+            android:id="@+id/submissionComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="@string/placeholder_num_comments"/>
 
-      <TextView
-          android:id="@+id/saveSubmission"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="5dp"
-          android:textAppearance="@style/TextAppearance.AppCompat.Small"
-          android:text="@string/save"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="@string/comments"/>
 
-      <TextView
-          android:id="@+id/hideSubmission"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="5dp"
-          android:textAppearance="@style/TextAppearance.AppCompat.Small"
-          android:text="@string/hide"/>
+        <TextView
+            android:id="@+id/shareSubmission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="@string/share"/>
 
-      <TextView
-          android:id="@+id/reportSubmission"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="5dp"
-          android:textAppearance="@style/TextAppearance.AppCompat.Small"
-          android:text="@string/report"/>
+        <TextView
+            android:id="@+id/saveSubmission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="@string/save"/>
+
+        <TextView
+            android:id="@+id/hideSubmission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="@string/hide"/>
+
+        <TextView
+            android:id="@+id/reportSubmission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:text="@string/report"/>
+
+      </LinearLayout>
 
     </LinearLayout>
 

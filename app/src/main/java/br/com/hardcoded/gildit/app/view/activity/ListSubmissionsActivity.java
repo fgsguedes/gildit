@@ -12,7 +12,7 @@ import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v4.widget.CursorAdapter;
 import android.view.View;
 import android.widget.ListView;
 
@@ -74,12 +74,12 @@ public class ListSubmissionsActivity extends FragmentActivity {
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
       getActivity().setTitle(data.getExtras().getString("subreddit"));
-      ((SimpleCursorAdapter) getListAdapter()).changeCursor(data);
+      ((CursorAdapter) getListAdapter()).changeCursor(data);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-      ((SimpleCursorAdapter) getListAdapter()).changeCursor(null);
+      ((CursorAdapter) getListAdapter()).changeCursor(null);
     }
   }
 }

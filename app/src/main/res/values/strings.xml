@@ -11,5 +11,6 @@
   <string name="report">report</string>
   <string name="to">to /r/</string>
   <string name="comments">comments</string>
+  <string name="submissionThumbnail">Submission thumbnail</string>
 
 </resources>
