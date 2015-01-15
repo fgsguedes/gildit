@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
@@ -48,16 +47,20 @@ public class ListSubmissionsActivity extends FragmentActivity {
   public boolean onMenuItemSelected(int featureId, MenuItem item) {
     // TODO: It's working, make it pretty
     if (R.id.pickSubredditMenuItem == item.getItemId()) {
+      FragmentManager supportFragmentManager = getSupportFragmentManager();
+      final ListSubmissionsFragment fragment = (ListSubmissionsFragment) supportFragmentManager.findFragmentById(android.R.id.content);
       AsyncQueryHandler handler = new AsyncQueryHandler(getContentResolver()) {
         @Override
         protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-          FragmentManager supportFragmentManager = getSupportFragmentManager();
-          ListSubmissionsFragment fragment = (ListSubmissionsFragment) supportFragmentManager.findFragmentById(android.R.id.content);
           if (fragment != null) {
             fragment.onLoadFinished(null, cursor);
           }
         }
       };
+      if (fragment != null) {
+        setTitle("/r/Android");
+        fragment.setListShown(false);
+      }
       handler.startQuery(token.getAndIncrement(), null, Uri.parse("content://" + getString(R.string.subreddit_authority) + "/Android"), null, null, null, null);
       return true;
     }
@@ -71,6 +74,7 @@ public class ListSubmissionsActivity extends FragmentActivity {
       super.onActivityCreated(savedInstanceState);
 
       setListAdapter(new SubmissionListAdapter(getActivity()));
+      setListShown(false);
       setHasOptionsMenu(true);
 
       getListView().setDivider(null);
@@ -113,6 +117,7 @@ public class ListSubmissionsActivity extends FragmentActivity {
         getActivity().setTitle(data.getExtras().getString("subreddit"));
       }
       ((CursorAdapter) getListAdapter()).changeCursor(data);
+      setListShown(true);
     }
 
     @Override
