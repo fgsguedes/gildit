@@ -68,12 +68,14 @@ public class ListSubmissionsActivity extends FragmentActivity {
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-      return new CursorLoader(getActivity(), Uri.parse("content://" + getString(R.string.subreddit_authority) + "/Android"), null, null, null, null);
+      return new CursorLoader(getActivity(), Uri.parse("content://" + getString(R.string.subreddit_authority)), null, null, null, null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-      getActivity().setTitle(data.getExtras().getString("subreddit"));
+      if (data != null) {
+        getActivity().setTitle(data.getExtras().getString("subreddit"));
+      }
       ((CursorAdapter) getListAdapter()).changeCursor(data);
     }
 

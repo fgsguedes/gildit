@@ -12,15 +12,18 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static com.google.common.base.Strings.isNullOrEmpty;
+
 public class Reddit {
 
   private static final String TAG = Reddit.class.getSimpleName();
 
-  private static final AndroidHttpClient httpClient = AndroidHttpClient.newInstance("gildit v0.1 by /u/fgsguedes");
+  private static final AndroidHttpClient httpClient = AndroidHttpClient.newInstance("gildit-android v0.1 by /u/fgsguedes");
 
-  public static JSONObject submissions(final String subreddit) {
+  public static JSONObject submissions(final String subredditName) {
     try {
-      HttpResponse response = httpClient.execute(new HttpGet("https://www.reddit.com/r/" + subreddit + ".json"));
+      String subredditUri = isNullOrEmpty(subredditName) ? "" : "r/" + subredditName;
+      HttpResponse response = httpClient.execute(new HttpGet("https://www.reddit.com/" + subredditUri + ".json"));
       try (InputStream inputStream = response.getEntity().getContent()) {
         return new JSONObject(IOUtils.toString(inputStream));
       } catch (JSONException e) {
