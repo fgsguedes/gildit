@@ -12,5 +12,6 @@
   <string name="to">to /r/</string>
   <string name="comments">comments</string>
   <string name="submissionThumbnail">Submission thumbnail</string>
+  <string name="pickSubreddit">/r/__________</string>
 
 </resources>
