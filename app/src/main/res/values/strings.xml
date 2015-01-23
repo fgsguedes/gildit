@@ -13,5 +13,6 @@
   <string name="comments">comments</string>
   <string name="submissionThumbnail">Submission thumbnail</string>
   <string name="pickSubreddit">/r/_______</string>
+  <string name="frontpage">Frontpage</string>
 
 </resources>

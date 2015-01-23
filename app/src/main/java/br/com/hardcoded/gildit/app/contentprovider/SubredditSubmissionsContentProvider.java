@@ -68,7 +68,6 @@ public class SubredditSubmissionsContentProvider extends ContentProvider {
         }
         if (i == 0) {
           cursor = new MatrixCursor(fields);
-          cursor.getExtras().putString("subreddit", subreddit == null ? "Frontpage" : "/r/" + subreddit);
         }
 
         String[] data = new String[post.length() + 1];

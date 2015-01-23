@@ -57,9 +57,6 @@ public class ListSubmissionsFragment extends ListFragment implements LoaderManag
 
   @Override
   public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-    if (data != null) {
-      getActivity().setTitle(data.getExtras().getString("subreddit"));
-    }
     ((CursorAdapter) getListAdapter()).changeCursor(data);
     setListShown(true);
   }

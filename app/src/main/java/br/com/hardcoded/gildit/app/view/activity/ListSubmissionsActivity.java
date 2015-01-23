@@ -35,6 +35,8 @@ public class ListSubmissionsActivity extends ActionBarActivity {
           .add(android.R.id.content, new ListSubmissionsFragment())
           .commit();
     }
+
+    setTitle(R.string.frontpage);
   }
 
   @Override
