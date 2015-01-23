@@ -5,6 +5,6 @@
   <item
       android:id="@+id/pickSubredditMenuItem"
       android:title="@string/pickSubreddit"
-      app:showAsAction="never"/>
+      app:showAsAction="always"/>
 
 </menu>
