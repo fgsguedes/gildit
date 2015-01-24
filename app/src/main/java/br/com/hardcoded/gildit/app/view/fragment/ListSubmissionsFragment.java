@@ -57,12 +57,16 @@ public class ListSubmissionsFragment extends ListFragment implements LoaderManag
 
   @Override
   public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-    ((CursorAdapter) getListAdapter()).changeCursor(data);
-    setListShown(true);
+    updateCursor(data);
   }
 
   @Override
   public void onLoaderReset(Loader<Cursor> loader) {
     ((CursorAdapter) getListAdapter()).changeCursor(null);
+  }
+
+  public void updateCursor(Cursor data) {
+    ((CursorAdapter) getListAdapter()).changeCursor(data);
+    setListShown(true);
   }
 }

@@ -1,12 +1,14 @@
 package br.com.hardcoded.gildit.app.view.activity;
 
 import android.content.AsyncQueryHandler;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,6 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import br.com.hardcoded.gildit.R;
 import br.com.hardcoded.gildit.app.view.fragment.ListSubmissionsFragment;
+import br.com.hardcoded.gildit.app.view.fragment.dialog.PickSubredditDialogFragment;
 
 public class ListSubmissionsActivity extends ActionBarActivity {
 
@@ -50,23 +53,31 @@ public class ListSubmissionsActivity extends ActionBarActivity {
     // TODO: It's working, make it pretty
     if (R.id.pickSubredditMenuItem == item.getItemId()) {
       FragmentManager supportFragmentManager = getSupportFragmentManager();
-      final ListSubmissionsFragment fragment = (ListSubmissionsFragment) supportFragmentManager.findFragmentById(R.id.submissionListFragment);
-      AsyncQueryHandler handler = new AsyncQueryHandler(getContentResolver()) {
-        @Override
-        protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
-          if (fragment != null) {
-            fragment.onLoadFinished(null, cursor);
-          }
-        }
-      };
-      if (fragment != null) {
-        setTitle("/r/Android");
-        fragment.setListShown(false);
-      }
-      handler.startQuery(token.getAndIncrement(), null, Uri.parse("content://" + getString(R.string.subreddit_authority) + "/Android"), null, null, null, null);
+      PickSubredditDialogFragment dialogFragment = new PickSubredditDialogFragment();
+      dialogFragment.show(supportFragmentManager, "pickSubredditDialog");
       return true;
     }
     return super.onOptionsItemSelected(item);
   }
 
+  @Override
+  protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+
+    String subreddit = intent.getStringExtra("input");
+    if (!TextUtils.isEmpty(subreddit)) {
+      final ListSubmissionsFragment fragment = (ListSubmissionsFragment) getSupportFragmentManager().findFragmentById(R.id.submissionListFragment);
+      if (fragment != null) {
+        AsyncQueryHandler handler = new AsyncQueryHandler(getContentResolver()) {
+          @Override
+          protected void onQueryComplete(int token, Object cookie, Cursor cursor) {
+            fragment.updateCursor(cursor);
+          }
+        };
+        fragment.setListShown(false);
+        setTitle("/r/" + subreddit);
+        handler.startQuery(token.getAndIncrement(), null, Uri.parse("content://" + getString(R.string.subreddit_authority) + "/" + subreddit), null, null, null, null);
+      }
+    }
+  }
 }

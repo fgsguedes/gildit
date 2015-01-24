@@ -14,5 +14,8 @@
   <string name="submissionThumbnail">Submission thumbnail</string>
   <string name="pickSubreddit">/r/_______</string>
   <string name="frontpage">Frontpage</string>
+  <string name="view_subreddit">View subreddit</string>
+  <string name="cancel">Cancel</string>
+  <string name="view">View</string>
 
 </resources>
