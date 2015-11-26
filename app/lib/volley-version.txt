@@ -1,0 +1,2 @@
+Commit hash 96c4d0b
+Generated 2015-11-26 usind `mvn package`
