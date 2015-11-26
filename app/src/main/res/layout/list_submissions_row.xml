@@ -33,7 +33,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:textAppearance="@style/TextAppearance.AppCompat.Title"
-          android:text="@string/placeholder_submission_title"/>
+          tools:text="Any random text"/>
 
       <LinearLayout
           android:orientation="horizontal"
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="@string/placeholder_submitted_by"/>
+            tools:text="submitted by"/>
 
         <TextView
             android:id="@+id/submissionAuthor"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="@string/placeholder_submission_creator"/>
+            tools:text="/u/fgsguedes"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="@string/placeholder_submission_subreddit"/>
+            tools:text="androiddev"/>
 
       </LinearLayout>
 
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="@string/placeholder_num_comments"/>
+            tools:text="555"/>
 
         <TextView
             android:layout_width="wrap_content"
