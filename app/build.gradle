@@ -1,5 +1,5 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
 
 dependencies {
   compile "com.android.support:appcompat-v7:$support_lib_version"
@@ -27,10 +27,10 @@ android {
     }
     release {
       minifyEnabled true
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
     }
   }
   sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
+    main.java.srcDirs += "src/main/kotlin"
   }
 }
