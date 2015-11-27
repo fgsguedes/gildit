@@ -35,3 +35,14 @@ android {
     main.java.srcDirs += "src/main/kotlin"
   }
 }
+
+buildscript {
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+  }
+}
