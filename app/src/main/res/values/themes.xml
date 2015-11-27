@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <style name="Theme.MyTheme" parent="Theme.AppCompat.Light">
+  <style name="Theme.MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="windowActionBar">false</item>
     <item name="colorAccent">#c5cae9</item>
     <item name="colorPrimary">#3f51b5</item>
