@@ -12,7 +12,7 @@
       android:theme="@style/Theme.MyTheme">
 
     <activity
-        android:name="guedes.TestActivity"
+        android:name=".ui.activity.SubmissionListActivity"
         android:label="@string/app_name">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>

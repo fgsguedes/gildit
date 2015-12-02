@@ -16,7 +16,7 @@
 
   <fragment
       android:id="@+id/submissionListFragment"
-      android:name="br.com.hardcoded.gildit.app.view.fragment.ListSubmissionsFragment"
+      android:name="android.support.v4.app.ListFragment"
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="1"/>
