@@ -1,2 +1,2 @@
-Commit hash 96c4d0b
-Generated 2015-11-26 usind `mvn package`
+Commit hash 3b37453
+Generated 2015-12-05 using `mvn package`
