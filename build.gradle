@@ -6,8 +6,7 @@ buildscript {
   }
 
   dependencies {
-    classpath "com.android.tools.build:gradle:2.0.0-alpha1"
-    classpath "com.neenbedankt.gradle.plugins:android-apt:$android_apt_version"
+    classpath "com.android.tools.build:gradle:1.5.0"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
 }
