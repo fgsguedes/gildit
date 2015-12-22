@@ -1,9 +1,16 @@
 package br.com.hardcoded.gildit.presenter
 
 import android.os.Bundle
+import android.util.Log
 import br.com.hardcoded.gildit.view.SubmissionListView
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response.ErrorListener
+import com.android.volley.Response.Listener
+import com.android.volley.toolbox.StringRequest
+import javax.inject.Inject
 
-class SubmissionListPresenter : Presenter<SubmissionListView> {
+class SubmissionListPresenter @Inject constructor(val requestQueue: RequestQueue) : Presenter<SubmissionListView> {
 
   val TAG = SubmissionListPresenter::class.simpleName
 
@@ -19,6 +26,10 @@ class SubmissionListPresenter : Presenter<SubmissionListView> {
   }
 
   fun onStart() {
-    view.showSubmissions(arrayOf("Guedes", "Teste"))
+    requestQueue.add(StringRequest(
+        Request.Method.GET,
+        "https://reddit.com/r/androiddev.json",
+        Listener<String> { Log.i(TAG, "Request response: $it") },
+        ErrorListener { Log.w(TAG, "Request error: $it") }))
   }
 }
