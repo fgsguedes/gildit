@@ -2,27 +2,28 @@ package br.com.hardcoded.gildit.ui.activity
 
 import android.os.Bundle
 import android.support.v4.app.ListFragment
-import android.util.Log
 import android.widget.ArrayAdapter
 import br.com.hardcoded.gildit.R
-import br.com.hardcoded.gildit.presenter.SubmissionListPresenter
-import br.com.hardcoded.gildit.view.SubmissionListView
+import br.com.hardcoded.gildit.model.Thing
+import br.com.hardcoded.gildit.presenter.LinksListPresenter
+import br.com.hardcoded.gildit.view.LinksListView
 import kotlinx.android.synthetic.main.activity_submission_list.*
 import javax.inject.Inject
 
-class SubmissionListActivity : BaseActivity(), SubmissionListView {
-  val TAG = SubmissionListActivity::class.simpleName
+class SubmissionListActivity : BaseActivity(), LinksListView {
 
-  lateinit var submissionList: ListFragment
+  val submissionList: ListFragment by lazy {
+    submissionListFragment as ListFragment
+  }
 
   @Inject
-  lateinit var presenter: SubmissionListPresenter
+  lateinit var presenter: LinksListPresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    Log.e(TAG, "onCreate")
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_submission_list);
     applicationComponent.inject(this)
+
+    setContentView(R.layout.activity_submission_list);
 
     setupUi()
     initialize(savedInstanceState)
@@ -31,8 +32,6 @@ class SubmissionListActivity : BaseActivity(), SubmissionListView {
   private fun setupUi() {
     setSupportActionBar(toolBar)
     supportActionBar.title = getString(R.string.frontpage)
-
-    submissionList = submissionListFragment as ListFragment
   }
 
   private fun initialize(savedInstanceState: Bundle?) {
@@ -45,7 +44,7 @@ class SubmissionListActivity : BaseActivity(), SubmissionListView {
     presenter.onStart()
   }
 
-  override fun showSubmissions(submissions: Array<String>) {
-    submissionList.listAdapter = ArrayAdapter(this, R.layout.list_row_submission, R.id.submissionTitle, submissions)
+  override fun showLinks(links: Array<Thing.Link>) {
+    submissionList.listAdapter = ArrayAdapter(this, R.layout.list_row_submission, R.id.submissionTitle, links.map { it.title })
   }
 }

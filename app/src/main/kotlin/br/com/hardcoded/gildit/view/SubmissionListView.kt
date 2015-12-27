@@ -1,5 +1,7 @@
 package br.com.hardcoded.gildit.view
 
-interface SubmissionListView {
-  fun showSubmissions(submissions: Array<String>)
+import br.com.hardcoded.gildit.model.Thing
+
+interface LinksListView {
+  fun showLinks(links: Array<Thing.Link>)
 }
