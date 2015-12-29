@@ -1,8 +1,7 @@
 package br.com.hardcoded.gildit.ui.activity
 
 import android.os.Bundle
-import android.support.v4.app.ListFragment
-import android.widget.ArrayAdapter
+import android.support.v7.widget.LinearLayoutManager
 import br.com.hardcoded.gildit.R
 import br.com.hardcoded.gildit.model.Thing
 import br.com.hardcoded.gildit.presenter.LinksListPresenter
@@ -10,11 +9,7 @@ import br.com.hardcoded.gildit.view.LinksListView
 import kotlinx.android.synthetic.main.activity_submission_list.*
 import javax.inject.Inject
 
-class SubmissionListActivity : BaseActivity(), LinksListView {
-
-  val submissionList: ListFragment by lazy {
-    submissionListFragment as ListFragment
-  }
+class LinkListActivity : BaseActivity(), LinksListView {
 
   @Inject
   lateinit var presenter: LinksListPresenter
@@ -45,6 +40,7 @@ class SubmissionListActivity : BaseActivity(), LinksListView {
   }
 
   override fun showLinks(links: Array<Thing.Link>) {
-    submissionList.listAdapter = ArrayAdapter(this, R.layout.list_row_submission, R.id.submissionTitle, links.map { it.title })
+    linksRecycleView.layoutManager = LinearLayoutManager(this)
+    linksRecycleView.adapter = LinksRecycleViewAdapter(links)
   }
 }

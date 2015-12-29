@@ -14,8 +14,8 @@
       app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
       app:popupTheme="@style/Theme.AppCompat"/>
 
-  <fragment
-      android:id="@+id/submissionListFragment"
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/linksRecycleView"
       android:name="android.support.v4.app.ListFragment"
       android:layout_width="match_parent"
       android:layout_height="0dp"
