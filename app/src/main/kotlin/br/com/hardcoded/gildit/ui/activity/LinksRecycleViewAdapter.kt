@@ -1,5 +1,6 @@
 package br.com.hardcoded.gildit.ui.activity
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,7 @@ import android.widget.TextView
 import br.com.hardcoded.gildit.R
 import br.com.hardcoded.gildit.model.Thing
 
-class LinksRecycleViewAdapter(val links: Array<Thing.Link>) : RecyclerView.Adapter<LinkViewHolder>() {
+class LinksRecycleViewAdapter(val context: Context, val links: Array<Thing.Link>) : RecyclerView.Adapter<LinkViewHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = LinkViewHolder(
       LayoutInflater.from(parent.context)
@@ -17,9 +18,8 @@ class LinksRecycleViewAdapter(val links: Array<Thing.Link>) : RecyclerView.Adapt
 
   override fun onBindViewHolder(holder: LinkViewHolder, position: Int) {
     links[position].let {
-      holder.submissionTitle.text = it.title
-      holder.submissionAuthor.text = it.author
-      holder.submissionSubreddit.text = it.subreddit
+      holder.lintTitle.text = it.title
+      holder.linkSubmissionDetails.text = context.getString(R.string.linkSubmissionDetails, it.author, it.subreddit)
     }
   }
 
@@ -28,13 +28,6 @@ class LinksRecycleViewAdapter(val links: Array<Thing.Link>) : RecyclerView.Adapt
 
 class LinkViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-  val submissionTitle: TextView
-  val submissionAuthor: TextView
-  val submissionSubreddit: TextView
-
-  init {
-    submissionTitle = view.findViewById(R.id.submissionTitle) as TextView
-    submissionAuthor = view.findViewById(R.id.submissionAuthor) as TextView
-    submissionSubreddit = view.findViewById(R.id.submissionSubreddit) as TextView
-  }
+  val lintTitle = view.findViewById(R.id.linkTitle) as TextView
+  val linkSubmissionDetails = view.findViewById(R.id.linkSubmissionDetails) as TextView
 }

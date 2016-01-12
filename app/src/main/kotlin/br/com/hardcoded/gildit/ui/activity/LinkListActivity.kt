@@ -45,6 +45,6 @@ class LinkListActivity : BaseActivity(), LinksListView {
 
   override fun showLinks(links: Array<Thing.Link>) {
     linksRecycleView.layoutManager = LinearLayoutManager(this)
-    linksRecycleView.adapter = LinksRecycleViewAdapter(links)
+    linksRecycleView.adapter = LinksRecycleViewAdapter(this, links)
   }
 }

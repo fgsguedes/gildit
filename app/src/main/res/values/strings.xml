@@ -17,5 +17,6 @@
   <string name="view_subreddit">View subreddit</string>
   <string name="cancel">Cancel</string>
   <string name="view">View</string>
+  <string name="linkSubmissionDetails">/u/%1$s to /r/%2$s</string>
 
 </resources>
