@@ -9,7 +9,7 @@ import android.widget.TextView
 import br.com.hardcoded.gildit.R
 import br.com.hardcoded.gildit.model.Thing
 
-class LinksRecycleViewAdapter(val context: Context, val links: Array<Thing.Link>) : RecyclerView.Adapter<LinkViewHolder>() {
+class LinksRecycleViewAdapter(private val context: Context, private val links: Array<Thing.Link>) : RecyclerView.Adapter<LinkViewHolder>() {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = LinkViewHolder(
       LayoutInflater.from(parent.context)

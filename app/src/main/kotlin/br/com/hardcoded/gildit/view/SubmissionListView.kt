@@ -4,4 +4,7 @@ import br.com.hardcoded.gildit.model.Thing
 
 interface LinksListView {
   fun showLinks(links: Array<Thing.Link>)
+  fun openPickSubRedditDialog()
+  fun updateTitle(subreddit: String)
+  fun clearList()
 }

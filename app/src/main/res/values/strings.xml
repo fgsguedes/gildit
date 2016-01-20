@@ -12,11 +12,12 @@
   <string name="to">to /r/</string>
   <string name="comments">comments</string>
   <string name="submissionThumbnail">Submission thumbnail</string>
-  <string name="pickSubreddit">/r/_______</string>
+  <string name="pickSubreddit">/r/</string>
   <string name="frontpage">front page</string>
   <string name="view_subreddit">View subreddit</string>
   <string name="cancel">Cancel</string>
   <string name="view">View</string>
   <string name="linkSubmissionDetails">/u/%1$s to /r/%2$s</string>
+  <string name="navigate">Navigate</string>
 
 </resources>

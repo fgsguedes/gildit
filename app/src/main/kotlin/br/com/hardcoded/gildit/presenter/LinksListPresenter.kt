@@ -10,9 +10,11 @@ import com.android.volley.Response.ErrorListener
 import com.android.volley.Response.Listener
 import javax.inject.Inject
 
-class LinksListPresenter @Inject constructor(val requestQueue: RequestQueue) : Presenter<LinksListView> {
+class LinksListPresenter @Inject constructor(private val requestQueue: RequestQueue) : Presenter<LinksListView> {
 
-  val TAG = LinksListPresenter::class.simpleName
+  companion object {
+    val TAG = LinksListPresenter::class.simpleName
+  }
 
   lateinit var view: LinksListView
 
@@ -25,10 +27,21 @@ class LinksListPresenter @Inject constructor(val requestQueue: RequestQueue) : P
     this.view = view
   }
 
-  fun onStart() = requestQueue.add(LinkRequest(
-      "https://www.reddit.com/r/androiddev/hot.json?raw_json=1",
-      Listener<Array<Thing.Link>> { showSubmissions(it) },
-      ErrorListener { Log.w(TAG, "Request error: `$it`") }))
+  fun onStart() {
+    requestQueue.add(LinkRequest(
+        "https://www.reddit.com/hot.json?raw_json=1",
+        Listener<Array<Thing.Link>> { view.showLinks(it) },
+        ErrorListener { Log.w(TAG, "Request error: `$it`") }))
+  }
 
-  fun showSubmissions(links: Array<Thing.Link>) = view.showLinks(links)
+  fun okPickSubredditClicked() {
+    view.openPickSubRedditDialog()
+  }
+
+  fun onNewSubRedditChosen(subreddit: String) {
+    requestQueue.add(LinkRequest(
+        "https://www.reddit.com/r/$subreddit/hot.json?raw_json=1",
+        Listener<Array<Thing.Link>> { view.showLinks(it) },
+        ErrorListener { Log.w(TAG, "Request error: `$it`") }))
+  }
 }
