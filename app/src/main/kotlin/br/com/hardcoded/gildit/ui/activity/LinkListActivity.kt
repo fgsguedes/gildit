@@ -9,11 +9,11 @@ import android.view.MenuItem
 import br.com.hardcoded.gildit.R
 import br.com.hardcoded.gildit.model.Thing
 import br.com.hardcoded.gildit.presenter.LinksListPresenter
-import br.com.hardcoded.gildit.ui.dialog.PickSubRedditDialogFragment
+import br.com.hardcoded.gildit.ui.dialog.PickSubredditDialogFragment
 import br.com.hardcoded.gildit.view.LinksListView
 import javax.inject.Inject
 
-class LinkListActivity : BaseActivity(), LinksListView, PickSubRedditDialogFragment.ClickCallback {
+class LinkListActivity : BaseActivity(), LinksListView, PickSubredditDialogFragment.ClickCallback {
 
   @Inject
   lateinit var presenter: LinksListPresenter
@@ -66,8 +66,8 @@ class LinkListActivity : BaseActivity(), LinksListView, PickSubRedditDialogFragm
     linksRecycleView.adapter = LinksRecycleViewAdapter(this, links)
   }
 
-  override fun openPickSubRedditDialog() {
-    PickSubRedditDialogFragment().show(supportFragmentManager, "")
+  override fun openPickSubredditDialog() {
+    PickSubredditDialogFragment().show(supportFragmentManager, "")
   }
 
   override fun updateTitle(subreddit: String) {
@@ -78,7 +78,7 @@ class LinkListActivity : BaseActivity(), LinksListView, PickSubRedditDialogFragm
     linksRecycleView.swapAdapter(null, true)
   }
 
-  override fun onNewSubRedditChosen(sub: String) {
-    presenter.onNewSubRedditChosen(sub)
+  override fun onNewSubredditChosen(sub: String) {
+    presenter.onNewSubredditChosen(sub)
   }
 }

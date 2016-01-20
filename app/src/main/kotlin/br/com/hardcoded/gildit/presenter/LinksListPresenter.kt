@@ -35,10 +35,10 @@ class LinksListPresenter @Inject constructor(private val requestQueue: RequestQu
   }
 
   fun okPickSubredditClicked() {
-    view.openPickSubRedditDialog()
+    view.openPickSubredditDialog()
   }
 
-  fun onNewSubRedditChosen(subreddit: String) {
+  fun onNewSubredditChosen(subreddit: String) {
     view.updateTitle(subreddit)
     view.clearList()
     requestQueue.add(LinkRequest(
