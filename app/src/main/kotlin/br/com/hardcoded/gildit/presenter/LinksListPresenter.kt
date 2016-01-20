@@ -39,6 +39,8 @@ class LinksListPresenter @Inject constructor(private val requestQueue: RequestQu
   }
 
   fun onNewSubRedditChosen(subreddit: String) {
+    view.updateTitle(subreddit)
+    view.clearList()
     requestQueue.add(LinkRequest(
         "https://www.reddit.com/r/$subreddit/hot.json?raw_json=1",
         Listener<Array<Thing.Link>> { view.showLinks(it) },
