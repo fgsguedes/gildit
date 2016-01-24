@@ -9,16 +9,15 @@ import android.view.LayoutInflater
 import android.widget.EditText
 import br.com.hardcoded.gildit.R
 
-class PickSubRedditDialogFragment() : DialogFragment() {
+class PickSubredditDialogFragment() : DialogFragment() {
 
   val editText by lazy { dialog.findViewById(R.id.pickSubredditEditText) as EditText }
-  var callBack: ClickCallback? = null
+  val callBack by lazy { activity as ClickCallback }
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
-    callBack = when (activity) {
-      is ClickCallback -> activity as ClickCallback
-      else -> null
+    if (activity !is ClickCallback) {
+      throw IllegalStateException("Calling activity must implement ClickCallback")
     }
   }
 
@@ -30,12 +29,12 @@ class PickSubRedditDialogFragment() : DialogFragment() {
         .setTitle(R.string.pick_subreddit)
         .setView(view)
         .setPositiveButton(R.string.navigate) { dialogInterface, which ->
-          callBack?.onNewSubRedditChosen(editText.text.toString())
+          callBack.onNewSubredditChosen(editText.text.toString())
         }
         .create()
   }
 
   interface ClickCallback {
-    fun onNewSubRedditChosen(sub: String)
+    fun onNewSubredditChosen(sub: String)
   }
 }
