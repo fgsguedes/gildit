@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.widget.EditText
 import br.com.hardcoded.gildit.R
+import br.com.hardcoded.gildit.extension.withoutSpaces
 
 class PickSubredditDialogFragment() : DialogFragment() {
 
@@ -29,7 +30,7 @@ class PickSubredditDialogFragment() : DialogFragment() {
         .setTitle(R.string.pick_subreddit)
         .setView(view)
         .setPositiveButton(R.string.navigate) { dialogInterface, which ->
-          callBack.onNewSubredditChosen(editText.text.toString())
+          callBack.onNewSubredditChosen(editText.text.withoutSpaces())
         }
         .create()
   }
