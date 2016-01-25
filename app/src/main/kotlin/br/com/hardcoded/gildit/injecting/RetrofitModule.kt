@@ -14,18 +14,20 @@ class RetrofitModule {
 
   @Provides
   @Singleton
-  fun providesRetrofit(): Retrofit {
-
-    val client = OkHttpClient.Builder()
+  fun providesOkHttpClient(): OkHttpClient {
+    return OkHttpClient.Builder()
         .addInterceptor {
-          val request = it.request()
-              .newBuilder()
-              .header("User-agent", "android:${BuildConfig.APPLICATION_ID}:${BuildConfig.VERSION_NAME} (by /u/fgsguedes)")
-              .build()
-
-          it.proceed(request)
+          it.proceed(
+              it.request().newBuilder()
+                  .header("User-agent", "android:${BuildConfig.APPLICATION_ID}:${BuildConfig.VERSION_NAME} (by /u/fgsguedes)")
+                  .build()
+          )
         }.build()
+  }
 
+  @Provides
+  @Singleton
+  fun providesRetrofit(client: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl("https://www.reddit.com")
         .addConverterFactory(LinkConverter())
