@@ -1,6 +1,7 @@
 package br.com.hardcoded.gildit.networking
 
-import br.com.hardcoded.gildit.extension.asInstanceOf
+import br.com.hardcoded.gildit.extension.getAsString
+import br.com.hardcoded.gildit.extension.parsedAs
 import br.com.hardcoded.gildit.model.Kind
 import br.com.hardcoded.gildit.model.Thing
 import com.google.gson.JsonParser
@@ -38,8 +39,8 @@ class LinkConverter() : Converter.Factory() {
 
         children
             .map { it.asJsonObject }
-            .filter { it.get("kind").asString == Kind.LINK.prefix }
-            .map { it.getAsJsonObject("data") asInstanceOf Thing.Link::class.java }
+            .filter { it.getAsString("kind") == Kind.LINK.prefix }
+            .map { it.getAsJsonObject("data") parsedAs Thing.Link::class }
             .toTypedArray()
       }
     } else null

@@ -1,7 +1,8 @@
 package br.com.hardcoded.gildit.networking.request
 
 import android.util.Log
-import br.com.hardcoded.gildit.extension.asInstanceOf
+import br.com.hardcoded.gildit.extension.getAsString
+import br.com.hardcoded.gildit.extension.parsedAs
 import br.com.hardcoded.gildit.model.Kind
 import br.com.hardcoded.gildit.model.Thing
 import com.android.volley.NetworkResponse
@@ -31,8 +32,8 @@ class LinkRequest(requestUrl: String, listener: Response.Listener<Array<Thing.Li
 
     val links = children
         .map { it.asJsonObject }
-        .filter { it.get("kind").asString == Kind.LINK.prefix }
-        .map { it.getAsJsonObject("data") asInstanceOf Thing.Link::class.java }
+        .filter { it.getAsString("kind") == Kind.LINK.prefix }
+        .map { it.getAsJsonObject("data") parsedAs Thing.Link::class.java }
 
     return Response.success(links.toTypedArray(), HttpHeaderParser.parseCacheHeaders(networkResponse))
   }
