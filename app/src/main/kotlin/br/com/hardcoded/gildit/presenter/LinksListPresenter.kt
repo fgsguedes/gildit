@@ -1,16 +1,14 @@
 package br.com.hardcoded.gildit.presenter
 
 import android.os.Bundle
-import android.util.Log
 import br.com.hardcoded.gildit.model.Thing
-import br.com.hardcoded.gildit.networking.request.LinkRequest
+import br.com.hardcoded.gildit.networking.SubredditRequest
 import br.com.hardcoded.gildit.view.LinksListView
-import com.android.volley.RequestQueue
-import com.android.volley.Response.ErrorListener
-import com.android.volley.Response.Listener
+import retrofit2.Callback
+import retrofit2.Response
 import javax.inject.Inject
 
-class LinksListPresenter @Inject constructor(private val requestQueue: RequestQueue) : Presenter<LinksListView> {
+class LinksListPresenter @Inject constructor(private val subredditRequest: SubredditRequest) : Presenter<LinksListView> {
 
   companion object {
     val TAG = LinksListPresenter::class.simpleName
@@ -28,10 +26,9 @@ class LinksListPresenter @Inject constructor(private val requestQueue: RequestQu
   }
 
   fun onStart() {
-    requestQueue.add(LinkRequest(
-        "https://www.reddit.com/hot.json?raw_json=1",
-        Listener<Array<Thing.Link>> { view.showLinks(it) },
-        ErrorListener { Log.w(TAG, "Request error: `$it`") }))
+    subredditRequest
+        .frontpage()
+        .enqueue(Lala())
   }
 
   fun okPickSubredditClicked() {
@@ -41,9 +38,18 @@ class LinksListPresenter @Inject constructor(private val requestQueue: RequestQu
   fun onNewSubredditChosen(subreddit: String) {
     view.updateTitle(subreddit)
     view.clearList()
-    requestQueue.add(LinkRequest(
-        "https://www.reddit.com/r/$subreddit/hot.json?raw_json=1",
-        Listener<Array<Thing.Link>> { view.showLinks(it) },
-        ErrorListener { Log.w(TAG, "Request error: `$it`") }))
+    subredditRequest
+        .hotOf(subreddit)
+        .enqueue(Lala())
+  }
+
+  inner class Lala : Callback<Array<Thing.Link>> {
+    override fun onFailure(t: Throwable?) {
+      throw UnsupportedOperationException()
+    }
+
+    override fun onResponse(response: Response<Array<Thing.Link>>?) {
+      view.showLinks(response?.body() ?: emptyArray())
+    }
   }
 }

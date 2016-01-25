@@ -5,13 +5,14 @@ import br.com.hardcoded.gildit.extension.asInstanceOf
 import br.com.hardcoded.gildit.model.Kind
 import br.com.hardcoded.gildit.model.Thing
 import com.android.volley.NetworkResponse
+import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.ServerError
 import com.android.volley.toolbox.HttpHeaderParser
 import com.google.gson.JsonParser
 
 class LinkRequest(requestUrl: String, listener: Response.Listener<Array<Thing.Link>>, errorListener: Response.ErrorListener) :
-    BaseRequest<Array<Thing.Link>>(Method.GET, requestUrl, listener, errorListener) {
+    BaseRequest<Array<Thing.Link>>(Request.Method.GET, requestUrl, listener, errorListener) {
 
   companion object {
     val TAG = LinkRequest::class.simpleName

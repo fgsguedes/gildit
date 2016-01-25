@@ -37,6 +37,8 @@ dependencies {
   compile "com.android.support:design:$support_lib_version"
   compile "com.android.support:cardview-v7:$support_lib_version"
 
+  compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+
   compile "com.google.dagger:dagger:$dagger_version"
 
   compile "com.google.code.gson:gson:$gson_version"
