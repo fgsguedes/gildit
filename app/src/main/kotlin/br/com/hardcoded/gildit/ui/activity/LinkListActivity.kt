@@ -29,7 +29,6 @@ class LinkListActivity : BaseActivity(), LinksListView, PickSubredditDialogFragm
 
     setupUi(savedInstanceState)
     initialize(savedInstanceState)
-
   }
 
   private fun setupUi(savedInstanceState: Bundle?) {
@@ -37,7 +36,7 @@ class LinkListActivity : BaseActivity(), LinksListView, PickSubredditDialogFragm
 
     val layoutManager = LinearLayoutManager(this)
     savedInstanceState?.let {
-      layoutManager.onRestoreInstanceState(savedInstanceState.getParcelable("lala"))
+      layoutManager.onRestoreInstanceState(it.getParcelable(RECYCLER_VIEW_STATE))
     }
 
     linksRecycleView.layoutManager = layoutManager
@@ -45,7 +44,7 @@ class LinkListActivity : BaseActivity(), LinksListView, PickSubredditDialogFragm
 
   override fun onSaveInstanceState(outState: Bundle) {
     presenter.onSaveInstanceState(outState)
-    outState.putParcelable("lala", linksRecycleView.layoutManager.onSaveInstanceState())
+    outState.putParcelable(RECYCLER_VIEW_STATE, linksRecycleView.layoutManager.onSaveInstanceState())
     super.onSaveInstanceState(outState)
   }
 
@@ -92,5 +91,9 @@ class LinkListActivity : BaseActivity(), LinksListView, PickSubredditDialogFragm
 
   override fun onNewSubredditChosen(sub: String) {
     presenter.onNewSubredditChosen(sub)
+  }
+
+  companion object {
+    val RECYCLER_VIEW_STATE = "recyclerViewState"
   }
 }

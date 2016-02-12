@@ -18,14 +18,14 @@ class LinksListPresenter @Inject constructor(private val subredditRequest: Subre
 
   override fun onCreate(bundle: Bundle?) {
     bundle?.let {
-      currentSubreddit = it.getString("currentSubreddit")
+      currentSubreddit = it.getString(CURRENT_SUBREDDIT)
     }
 
     view.updateTitle(currentSubreddit ?: "frontpage")
   }
 
   override fun onSaveInstanceState(outState: Bundle) {
-    outState.putString("currentSubreddit", currentSubreddit)
+    outState.putString(CURRENT_SUBREDDIT, currentSubreddit)
   }
 
   override fun bindView(view: LinksListView) {
@@ -58,5 +58,9 @@ class LinksListPresenter @Inject constructor(private val subredditRequest: Subre
     if (response.isSuccess) {
       view.showLinks(response.body())
     }
+  }
+
+  companion object {
+    val CURRENT_SUBREDDIT = "currentSubreddit"
   }
 }
