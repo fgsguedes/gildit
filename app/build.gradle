@@ -50,14 +50,3 @@ dependencies {
 kapt {
   generateStubs = true
 }
-
-buildscript {
-
-  repositories {
-    mavenCentral()
-  }
-
-  dependencies {
-    classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
-  }
-}
