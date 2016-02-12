@@ -20,7 +20,7 @@ class LinkRequest(requestUrl: String, listener: Response.Listener<Array<Thing.Li
   }
 
   override fun parseNetworkResponse(networkResponse: NetworkResponse): Response<Array<Thing.Link>> {
-    val serverResponse = String(networkResponse.data, HttpHeaderParser.parseCharset(networkResponse.headers, "UTF-8"))
+    val serverResponse = String(networkResponse.data, Charsets.UTF_8)
     Log.d(TAG, "Request response -> url=`$requestUrl` statusCode=`${networkResponse.statusCode}` response=`$serverResponse")
 
     val jsonResponse = JsonParser().parse(serverResponse).asJsonObject
