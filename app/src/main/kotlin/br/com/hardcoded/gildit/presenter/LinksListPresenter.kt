@@ -17,8 +17,8 @@ class LinksListPresenter @Inject constructor(private val subredditRequest: Subre
   private var subredditCall: Call<Array<Thing.Link>>? = null
 
   override fun onCreate(bundle: Bundle?) {
-    bundle?.let {
-      currentSubreddit = it.getString(CURRENT_SUBREDDIT)
+    bundle?.apply {
+      currentSubreddit = getString(CURRENT_SUBREDDIT)
     }
 
     view.updateTitle(currentSubreddit ?: "frontpage")
@@ -33,7 +33,11 @@ class LinksListPresenter @Inject constructor(private val subredditRequest: Subre
   }
 
   fun onStart() {
-    subredditCall = if (currentSubreddit != null) subredditRequest.hotOf(currentSubreddit!!) else subredditRequest.frontpage()
+
+    subredditCall = currentSubreddit?.let {
+      subredditRequest.hotOf(it)
+    } ?: subredditRequest.frontpage()
+
     subredditCall?.enqueue(this)
   }
 

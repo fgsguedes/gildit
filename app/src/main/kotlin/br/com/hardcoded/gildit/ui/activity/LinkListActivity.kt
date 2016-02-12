@@ -35,8 +35,8 @@ class LinkListActivity : BaseActivity(), LinksListView, PickSubredditDialogFragm
     setSupportActionBar(toolBar)
 
     val layoutManager = LinearLayoutManager(this)
-    savedInstanceState?.let {
-      layoutManager.onRestoreInstanceState(it.getParcelable(RECYCLER_VIEW_STATE))
+    savedInstanceState?.apply {
+      layoutManager.onRestoreInstanceState(getParcelable(RECYCLER_VIEW_STATE))
     }
 
     linksRecycleView.layoutManager = layoutManager

@@ -17,9 +17,9 @@ class LinksRecycleViewAdapter(private val context: Context, private val links: A
   )
 
   override fun onBindViewHolder(holder: LinkViewHolder, position: Int) {
-    links[position].let {
-      holder.lintTitle.text = it.title
-      holder.linkSubmissionDetails.text = context.getString(R.string.linkSubmissionDetails, it.author, it.subreddit)
+    links[position].apply {
+      holder.lintTitle.text = title
+      holder.linkSubmissionDetails.text = context.getString(R.string.linkSubmissionDetails, author, subreddit)
     }
   }
 
