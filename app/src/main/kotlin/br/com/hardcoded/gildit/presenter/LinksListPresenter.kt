@@ -4,31 +4,37 @@ import android.os.Bundle
 import br.com.hardcoded.gildit.model.Thing
 import br.com.hardcoded.gildit.networking.SubredditRequest
 import br.com.hardcoded.gildit.view.LinksListView
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class LinksListPresenter @Inject constructor(private val subredditRequest: SubredditRequest) : Presenter<LinksListView> {
-
-  companion object {
-    val TAG = LinksListPresenter::class.simpleName
-  }
+class LinksListPresenter @Inject constructor(private val subredditRequest: SubredditRequest) : Presenter<LinksListView>, Callback<Array<Thing.Link>> {
 
   lateinit var view: LinksListView
 
+  private var currentSubreddit: String? = null
+  private var subredditCall: Call<Array<Thing.Link>>? = null
+
   override fun onCreate(bundle: Bundle?) {
+    bundle?.let {
+      currentSubreddit = it.getString("currentSubreddit")
+    }
+
+    view.updateTitle(currentSubreddit ?: "frontpage")
   }
 
-  override fun onSaveInstanceState(outState: Bundle) = TODO()
+  override fun onSaveInstanceState(outState: Bundle) {
+    outState.putString("currentSubreddit", currentSubreddit)
+  }
 
   override fun bindView(view: LinksListView) {
     this.view = view
   }
 
   fun onStart() {
-    subredditRequest
-        .frontpage()
-        .enqueue(Lala())
+    subredditCall = if (currentSubreddit != null) subredditRequest.hotOf(currentSubreddit!!) else subredditRequest.frontpage()
+    subredditCall?.enqueue(this)
   }
 
   fun okPickSubredditClicked() {
@@ -36,20 +42,21 @@ class LinksListPresenter @Inject constructor(private val subredditRequest: Subre
   }
 
   fun onNewSubredditChosen(subreddit: String) {
+    currentSubreddit = subreddit
+
     view.updateTitle(subreddit)
     view.clearList()
-    subredditRequest
-        .hotOf(subreddit)
-        .enqueue(Lala())
+
+    subredditCall = subredditRequest.hotOf(subreddit)
+    subredditCall?.enqueue(this)
   }
 
-  inner class Lala : Callback<Array<Thing.Link>> {
-    override fun onFailure(t: Throwable?) {
-      throw UnsupportedOperationException()
-    }
+  override fun onFailure(t: Throwable) = TODO()
 
-    override fun onResponse(response: Response<Array<Thing.Link>>?) {
-      view.showLinks(response?.body() ?: emptyArray())
+  override fun onResponse(response: Response<Array<Thing.Link>>) {
+    subredditCall = null
+    if (response.isSuccess) {
+      view.showLinks(response.body())
     }
   }
 }

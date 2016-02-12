@@ -27,13 +27,26 @@ class LinkListActivity : BaseActivity(), LinksListView, PickSubredditDialogFragm
 
     setContentView(R.layout.activity_submission_list);
 
-    setupUi()
+    setupUi(savedInstanceState)
     initialize(savedInstanceState)
+
   }
 
-  private fun setupUi() {
+  private fun setupUi(savedInstanceState: Bundle?) {
     setSupportActionBar(toolBar)
-    updateTitle(getString(R.string.frontpage))
+
+    val layoutManager = LinearLayoutManager(this)
+    savedInstanceState?.let {
+      layoutManager.onRestoreInstanceState(savedInstanceState.getParcelable("lala"))
+    }
+
+    linksRecycleView.layoutManager = layoutManager
+  }
+
+  override fun onSaveInstanceState(outState: Bundle) {
+    presenter.onSaveInstanceState(outState)
+    outState.putParcelable("lala", linksRecycleView.layoutManager.onSaveInstanceState())
+    super.onSaveInstanceState(outState)
   }
 
   private fun initialize(savedInstanceState: Bundle?) {
@@ -62,7 +75,6 @@ class LinkListActivity : BaseActivity(), LinksListView, PickSubredditDialogFragm
   }
 
   override fun showLinks(links: Array<Thing.Link>) {
-    linksRecycleView.layoutManager = LinearLayoutManager(this)
     linksRecycleView.adapter = LinksRecycleViewAdapter(this, links)
   }
 
@@ -71,7 +83,7 @@ class LinkListActivity : BaseActivity(), LinksListView, PickSubredditDialogFragm
   }
 
   override fun updateTitle(subreddit: String) {
-    supportActionBar.title = subreddit
+    supportActionBar?.title = subreddit
   }
 
   override fun clearList() {
