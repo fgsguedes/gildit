@@ -29,6 +29,7 @@ class PickSubredditDialogFragment() : DialogFragment() {
     return AlertDialog.Builder(activity)
         .setTitle(R.string.pick_subreddit)
         .setView(view)
+        .setNeutralButton(R.string.cancel) { dialogInterface, which -> }
         .setPositiveButton(R.string.navigate) { dialogInterface, which ->
           callBack.onNewSubredditChosen(editText.text.withoutSpaces())
         }
