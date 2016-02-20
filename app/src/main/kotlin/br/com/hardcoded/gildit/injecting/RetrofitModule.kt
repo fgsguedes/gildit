@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import javax.inject.Singleton
 
 @Module
@@ -31,6 +32,7 @@ class RetrofitModule {
     return Retrofit.Builder()
         .baseUrl("https://www.reddit.com")
         .addConverterFactory(LinkConverter())
+        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .client(client)
         .build()
   }

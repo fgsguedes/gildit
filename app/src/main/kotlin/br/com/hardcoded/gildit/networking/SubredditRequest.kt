@@ -5,23 +5,22 @@ import br.com.hardcoded.gildit.extension.parsedAs
 import br.com.hardcoded.gildit.model.Kind
 import br.com.hardcoded.gildit.model.Thing
 import com.google.gson.JsonParser
-import okhttp3.RequestBody
 import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Path
+import rx.Observable
 import java.lang.reflect.GenericArrayType
 import java.lang.reflect.Type
 
 interface SubredditRequest {
 
   @GET("/hot.json?raw_json=1")
-  fun frontpage(): Call<Array<Thing.Link>>
+  fun frontpage(): Observable<Array<Thing.Link>>
 
   @GET("/r/{subreddit}/hot.json?raw_json=1")
-  fun hotOf(@Path("subreddit") subreddit: String): Call<Array<Thing.Link>>
+  fun hotOf(@Path("subreddit") subreddit: String): Observable<Array<Thing.Link>>
 }
 
 
@@ -44,13 +43,5 @@ class LinkConverter() : Converter.Factory() {
             .toTypedArray()
       }
     } else null
-  }
-
-  override fun requestBodyConverter(type: Type?, annotations: Array<out Annotation>?, retrofit: Retrofit): Converter<*, RequestBody>? {
-    return null
-  }
-
-  override fun stringConverter(type: Type, annotations: Array<out Annotation>?): Converter<*, String>? {
-    return null
   }
 }

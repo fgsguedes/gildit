@@ -1,20 +1,20 @@
 package br.com.hardcoded.gildit.presenter
 
 import android.os.Bundle
+import android.util.Log
 import br.com.hardcoded.gildit.model.Thing
 import br.com.hardcoded.gildit.networking.SubredditRequest
 import br.com.hardcoded.gildit.view.LinksListView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import javax.inject.Inject
 
-class LinksListPresenter @Inject constructor(private val subredditRequest: SubredditRequest) : Presenter<LinksListView>, Callback<Array<Thing.Link>> {
+class LinksListPresenter @Inject constructor(private val subredditRequest: SubredditRequest) : Presenter<LinksListView> {
 
   lateinit var view: LinksListView
 
   private var currentSubreddit: String? = null
-  private var subredditCall: Call<Array<Thing.Link>>? = null
 
   override fun onCreate(bundle: Bundle?) {
     bundle?.apply {
@@ -34,11 +34,11 @@ class LinksListPresenter @Inject constructor(private val subredditRequest: Subre
 
   fun onStart() {
 
-    subredditCall = currentSubreddit?.let {
+    val requestObservable = currentSubreddit?.let {
       subredditRequest.hotOf(it)
     } ?: subredditRequest.frontpage()
 
-    subredditCall?.enqueue(this)
+    subscribe(requestObservable)
   }
 
   fun okPickSubredditClicked() {
@@ -51,20 +51,23 @@ class LinksListPresenter @Inject constructor(private val subredditRequest: Subre
     view.updateTitle(subreddit)
     view.clearList()
 
-    subredditCall = subredditRequest.hotOf(subreddit)
-    subredditCall?.enqueue(this)
+    subscribe(subredditRequest.hotOf(subreddit))
   }
 
-  override fun onFailure(t: Throwable) = TODO()
-
-  override fun onResponse(response: Response<Array<Thing.Link>>) {
-    subredditCall = null
-    if (response.isSuccess) {
-      view.showLinks(response.body())
-    }
+  private fun subscribe(observable: Observable<Array<Thing.Link>>) {
+    observable
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .unsubscribeOn(Schedulers.io())
+        .subscribe(
+            { view.showLinks(it) },
+            { Log.e(TAG, "Error: ${it.message}", it) },
+            { Log.i(TAG, "SubReddit request Completed") })
   }
 
   companion object {
+    val TAG = LinksListPresenter::class.simpleName
+
     val CURRENT_SUBREDDIT = "currentSubreddit"
   }
 }
