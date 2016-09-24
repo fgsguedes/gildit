@@ -1,8 +1,7 @@
 package br.com.hardcoded.gildit.injecting
 
 import br.com.hardcoded.gildit.BuildConfig
-import br.com.hardcoded.gildit.networking.LinkConverter
-import br.com.hardcoded.gildit.networking.SubredditRequest
+import br.com.hardcoded.gildit.networking.SubredditApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -31,7 +30,6 @@ class RetrofitModule {
   fun providesRetrofit(client: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl("https://www.reddit.com")
-        .addConverterFactory(LinkConverter())
         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .client(client)
         .build()
@@ -39,5 +37,5 @@ class RetrofitModule {
 
   @Provides
   @Singleton
-  fun providesSubredditRequester(retrofit: Retrofit) = retrofit.create(SubredditRequest::class.java)
+  fun providesSubredditRequester(retrofit: Retrofit) = retrofit.create(SubredditApi::class.java)
 }

@@ -1,6 +1,6 @@
 package br.com.hardcoded.gildit.injecting
 
-import br.com.hardcoded.gildit.networking.SubredditRequest
+import br.com.hardcoded.gildit.networking.SubredditApi
 import br.com.hardcoded.gildit.presenter.LinksListPresenter
 import dagger.Module
 import dagger.Provides
@@ -11,5 +11,5 @@ class PresenterModule {
 
   @Provides
   @Singleton
-  fun providesPresenter(subredditRequest: SubredditRequest) = LinksListPresenter(subredditRequest)
+  fun providesPresenter(subredditApi: SubredditApi) = LinksListPresenter(subredditApi)
 }

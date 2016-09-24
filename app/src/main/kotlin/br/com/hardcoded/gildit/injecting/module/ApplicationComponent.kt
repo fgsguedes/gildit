@@ -9,6 +9,6 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = arrayOf(AndroidModule::class, RetrofitModule::class, PresenterModule::class))
-public interface ApplicationComponent {
+interface ApplicationComponent {
   fun inject(submissionListActivity: LinkListActivity)
 }

@@ -1,2 +1,0 @@
-Commit hash 3b37453
-Generated 2015-12-05 using `mvn package`

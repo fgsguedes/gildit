@@ -3,14 +3,16 @@ package br.com.hardcoded.gildit.presenter
 import android.os.Bundle
 import android.util.Log
 import br.com.hardcoded.gildit.model.Thing
-import br.com.hardcoded.gildit.networking.SubredditRequest
+import br.com.hardcoded.gildit.networking.SubredditApi
 import br.com.hardcoded.gildit.view.LinksListView
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
 
-class LinksListPresenter @Inject constructor(private val subredditRequest: SubredditRequest) : Presenter<LinksListView> {
+class LinksListPresenter @Inject constructor(
+    private val subredditApi: SubredditApi
+) : Presenter<LinksListView> {
 
   lateinit var view: LinksListView
 
@@ -35,8 +37,8 @@ class LinksListPresenter @Inject constructor(private val subredditRequest: Subre
   fun onStart() {
 
     val requestObservable = currentSubreddit?.let {
-      subredditRequest.hotOf(it)
-    } ?: subredditRequest.frontpage()
+      subredditApi.hotOf(it)
+    } ?: subredditApi.frontpage()
 
     subscribe(requestObservable)
   }
@@ -51,7 +53,7 @@ class LinksListPresenter @Inject constructor(private val subredditRequest: Subre
     view.updateTitle(subreddit)
     view.clearList()
 
-    subscribe(subredditRequest.hotOf(subreddit))
+    subscribe(subredditApi.hotOf(subreddit))
   }
 
   private fun subscribe(observable: Observable<Array<Thing.Link>>) {
@@ -66,7 +68,7 @@ class LinksListPresenter @Inject constructor(private val subredditRequest: Subre
   }
 
   companion object {
-    val TAG = LinksListPresenter::class.simpleName
+    val TAG = LinksListPresenter::class.java.simpleName
 
     val CURRENT_SUBREDDIT = "currentSubreddit"
   }

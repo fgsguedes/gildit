@@ -2,7 +2,7 @@
 buildscript {
 
   project.ext {
-    kotlin_version = '1.0.0'
+    kotlin_version = '1.0.4'
   }
 
   repositories {
@@ -10,7 +10,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.0.0-beta5'
+    classpath 'com.android.tools.build:gradle:2.2.0'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
 }
@@ -21,19 +21,20 @@ allprojects {
   }
 
   ext {
-    application_id = 'br.com.hardcoded.gildit'
+    application_id = 'com.fgsguedes.gildit'
 
     version_code = 1
     version_name = '1.0'
 
-    android_apt_version = '1.8'
-
-    support_lib_version = '23.1.1'
+    support_lib_version = '24.2.1'
 
     jsr250_version = '1.0'
 
-    dagger_version = '2.0.2'
+    dagger_version = '2.7'
     gson_version = '2.5'
-    retrofit_version = '2.0.0-beta4'
+    retrofit_version = '2.1.0'
+
+    rxjava_version = '1.2.0'
+    rxandroid_version = '1.2.1'
   }
 }
