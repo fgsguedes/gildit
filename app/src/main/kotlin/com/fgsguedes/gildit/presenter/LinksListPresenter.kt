@@ -2,9 +2,9 @@ package com.fgsguedes.gildit.presenter
 
 import android.os.Bundle
 import android.util.Log
+import com.fgsguedes.gildit.contract.LinkContract
 import com.fgsguedes.gildit.model.Thing
 import com.fgsguedes.gildit.networking.SubredditApi
-import com.fgsguedes.gildit.view.LinksListView
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -12,9 +12,9 @@ import javax.inject.Inject
 
 class LinksListPresenter @Inject constructor(
     private val subredditApi: SubredditApi
-) : Presenter<LinksListView> {
+) : LinkContract.Presenter {
 
-  lateinit var view: LinksListView
+  lateinit var view: LinkContract.View
 
   private var currentSubreddit: String? = null
 
@@ -30,7 +30,7 @@ class LinksListPresenter @Inject constructor(
     outState.putString(CURRENT_SUBREDDIT, currentSubreddit)
   }
 
-  override fun bindView(view: LinksListView) {
+  override fun bindView(view: LinkContract.View) {
     this.view = view
   }
 

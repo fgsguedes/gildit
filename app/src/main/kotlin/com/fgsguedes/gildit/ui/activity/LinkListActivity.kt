@@ -7,13 +7,13 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import com.fgsguedes.gildit.R
+import com.fgsguedes.gildit.contract.LinkContract
 import com.fgsguedes.gildit.model.Thing
 import com.fgsguedes.gildit.presenter.LinksListPresenter
 import com.fgsguedes.gildit.ui.dialog.PickSubredditDialogFragment
-import com.fgsguedes.gildit.view.LinksListView
 import javax.inject.Inject
 
-class LinkListActivity : BaseActivity(), LinksListView, PickSubredditDialogFragment.ClickCallback {
+class LinkListActivity : BaseActivity(), LinkContract.View, PickSubredditDialogFragment.ClickCallback {
 
   @Inject
   lateinit var presenter: LinksListPresenter
