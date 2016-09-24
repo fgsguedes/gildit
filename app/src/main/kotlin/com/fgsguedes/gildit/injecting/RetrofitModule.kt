@@ -1,7 +1,6 @@
-package br.com.hardcoded.gildit.injecting
+package com.fgsguedes.gildit.injecting
 
-import br.com.hardcoded.gildit.BuildConfig
-import br.com.hardcoded.gildit.networking.SubredditApi
+import com.fgsguedes.gildit.BuildConfig
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -34,8 +33,4 @@ class RetrofitModule {
         .client(client)
         .build()
   }
-
-  @Provides
-  @Singleton
-  fun providesSubredditRequester(retrofit: Retrofit) = retrofit.create(SubredditApi::class.java)
 }

@@ -1,4 +1,4 @@
-package br.com.hardcoded.gildit.ui.dialog
+package com.fgsguedes.gildit.ui.dialog
 
 import android.app.Dialog
 import android.content.Context
@@ -7,8 +7,8 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.widget.EditText
-import br.com.hardcoded.gildit.R
-import br.com.hardcoded.gildit.extension.withoutSpaces
+import com.fgsguedes.gildit.R
+import com.fgsguedes.gildit.extension.withoutSpaces
 
 class PickSubredditDialogFragment() : DialogFragment() {
 

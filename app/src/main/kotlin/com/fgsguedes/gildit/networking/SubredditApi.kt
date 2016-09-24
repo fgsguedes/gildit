@@ -1,6 +1,6 @@
-package br.com.hardcoded.gildit.networking
+package com.fgsguedes.gildit.networking
 
-import br.com.hardcoded.gildit.model.Thing
+import com.fgsguedes.gildit.model.Thing
 import retrofit2.http.GET
 import retrofit2.http.Path
 import rx.Observable

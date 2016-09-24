@@ -1,4 +1,4 @@
-package br.com.hardcoded.gildit.presenter
+package com.fgsguedes.gildit.presenter
 
 import android.os.Bundle
 

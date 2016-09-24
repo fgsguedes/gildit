@@ -1,8 +1,8 @@
-package br.com.hardcoded.gildit.ui.activity
+package com.fgsguedes.gildit.ui.activity
 
 import android.support.v7.app.AppCompatActivity
-import br.com.hardcoded.gildit.App
-import br.com.hardcoded.gildit.injecting.module.ApplicationComponent
+import com.fgsguedes.gildit.App
+import com.fgsguedes.gildit.injecting.module.ApplicationComponent
 
 open class BaseActivity : AppCompatActivity() {
 

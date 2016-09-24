@@ -1,4 +1,4 @@
-package br.com.hardcoded.gildit.injecting
+package com.fgsguedes.gildit.injecting
 
 import android.app.Application
 import dagger.Module

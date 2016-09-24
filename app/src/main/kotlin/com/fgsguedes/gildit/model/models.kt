@@ -1,4 +1,4 @@
-package br.com.hardcoded.gildit.model
+package com.fgsguedes.gildit.model
 
 
 data class Listing(val before: String, val after: String, val modhash: String, val children: Array<Thing>)

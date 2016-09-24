@@ -1,4 +1,4 @@
-package br.com.hardcoded.gildit.ui.activity
+package com.fgsguedes.gildit.ui.activity
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -6,11 +6,11 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
-import br.com.hardcoded.gildit.R
-import br.com.hardcoded.gildit.model.Thing
-import br.com.hardcoded.gildit.presenter.LinksListPresenter
-import br.com.hardcoded.gildit.ui.dialog.PickSubredditDialogFragment
-import br.com.hardcoded.gildit.view.LinksListView
+import com.fgsguedes.gildit.R
+import com.fgsguedes.gildit.model.Thing
+import com.fgsguedes.gildit.presenter.LinksListPresenter
+import com.fgsguedes.gildit.ui.dialog.PickSubredditDialogFragment
+import com.fgsguedes.gildit.view.LinksListView
 import javax.inject.Inject
 
 class LinkListActivity : BaseActivity(), LinksListView, PickSubredditDialogFragment.ClickCallback {

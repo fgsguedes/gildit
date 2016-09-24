@@ -1,7 +1,7 @@
-package br.com.hardcoded.gildit.injecting
+package com.fgsguedes.gildit.injecting
 
-import br.com.hardcoded.gildit.networking.SubredditApi
-import br.com.hardcoded.gildit.presenter.LinksListPresenter
+import com.fgsguedes.gildit.networking.SubredditApi
+import com.fgsguedes.gildit.presenter.LinksListPresenter
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

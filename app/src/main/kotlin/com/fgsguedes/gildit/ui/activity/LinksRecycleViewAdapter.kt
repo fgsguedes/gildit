@@ -1,4 +1,4 @@
-package br.com.hardcoded.gildit.ui.activity
+package com.fgsguedes.gildit.ui.activity
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import br.com.hardcoded.gildit.R
-import br.com.hardcoded.gildit.model.Thing
+import com.fgsguedes.gildit.R
+import com.fgsguedes.gildit.model.Thing
 
 class LinksRecycleViewAdapter(private val context: Context, private val links: Array<Thing.Link>) : RecyclerView.Adapter<LinkViewHolder>() {
 

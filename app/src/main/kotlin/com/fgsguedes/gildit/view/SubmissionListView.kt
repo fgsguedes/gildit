@@ -1,6 +1,6 @@
-package br.com.hardcoded.gildit.view
+package com.fgsguedes.gildit.view
 
-import br.com.hardcoded.gildit.model.Thing
+import com.fgsguedes.gildit.model.Thing
 
 interface LinksListView {
   fun showLinks(links: Array<Thing.Link>)

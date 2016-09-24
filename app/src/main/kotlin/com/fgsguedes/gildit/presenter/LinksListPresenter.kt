@@ -1,10 +1,10 @@
-package br.com.hardcoded.gildit.presenter
+package com.fgsguedes.gildit.presenter
 
 import android.os.Bundle
 import android.util.Log
-import br.com.hardcoded.gildit.model.Thing
-import br.com.hardcoded.gildit.networking.SubredditApi
-import br.com.hardcoded.gildit.view.LinksListView
+import com.fgsguedes.gildit.model.Thing
+import com.fgsguedes.gildit.networking.SubredditApi
+import com.fgsguedes.gildit.view.LinksListView
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
