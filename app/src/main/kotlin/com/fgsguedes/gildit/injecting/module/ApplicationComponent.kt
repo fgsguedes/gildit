@@ -1,9 +1,6 @@
 package com.fgsguedes.gildit.injecting.module
 
-import com.fgsguedes.gildit.injecting.AndroidModule
-import com.fgsguedes.gildit.injecting.ApiModule
-import com.fgsguedes.gildit.injecting.PresenterModule
-import com.fgsguedes.gildit.injecting.RetrofitModule
+import com.fgsguedes.gildit.injecting.*
 import com.fgsguedes.gildit.ui.activity.LinkListActivity
 import dagger.Component
 import javax.inject.Singleton
@@ -14,6 +11,7 @@ import javax.inject.Singleton
         AndroidModule::class,
         RetrofitModule::class,
         ApiModule::class,
+        RepositoryModule::class,
         PresenterModule::class
     )
 )

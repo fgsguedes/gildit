@@ -8,18 +8,19 @@ import android.view.Menu
 import android.view.MenuItem
 import com.fgsguedes.gildit.R
 import com.fgsguedes.gildit.contract.LinkContract
-import com.fgsguedes.gildit.model.Thing
-import com.fgsguedes.gildit.presenter.LinksListPresenter
+import com.fgsguedes.gildit.model.Link
 import com.fgsguedes.gildit.ui.dialog.PickSubredditDialogFragment
 import javax.inject.Inject
 
 class LinkListActivity : BaseActivity(), LinkContract.View, PickSubredditDialogFragment.ClickCallback {
 
   @Inject
-  lateinit var presenter: LinksListPresenter
+  lateinit var presenter: LinkContract.Presenter
+
+  val toolBar by lazy { findViewById(R.id.toolBar) as Toolbar }
 
   val linksRecycleView by lazy { findViewById(R.id.linksRecycleView) as RecyclerView }
-  val toolBar by lazy { findViewById(R.id.toolBar) as Toolbar }
+  val adapter by lazy { LinksRecycleViewAdapter(this) }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -37,6 +38,7 @@ class LinkListActivity : BaseActivity(), LinkContract.View, PickSubredditDialogF
     linksRecycleView.layoutManager = LinearLayoutManager(this).apply {
       onRestoreInstanceState(savedInstanceState?.getParcelable(RECYCLER_VIEW_STATE))
     }
+    linksRecycleView.adapter = adapter
   }
 
   override fun onSaveInstanceState(outState: Bundle) {
@@ -70,8 +72,8 @@ class LinkListActivity : BaseActivity(), LinkContract.View, PickSubredditDialogF
     }
   }
 
-  override fun showLinks(links: Array<Thing.Link>) {
-    linksRecycleView.adapter = LinksRecycleViewAdapter(this, links)
+  override fun showLinks(link: Link) {
+    adapter.add(link)
   }
 
   override fun openPickSubredditDialog() {
@@ -83,7 +85,7 @@ class LinkListActivity : BaseActivity(), LinkContract.View, PickSubredditDialogF
   }
 
   override fun clearList() {
-    linksRecycleView.swapAdapter(null, true)
+    adapter.clear()
   }
 
   override fun onNewSubredditChosen(sub: String) {

@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.fgsguedes.gildit.R
-import com.fgsguedes.gildit.model.Thing
+import com.fgsguedes.gildit.model.Link
 
-class LinksRecycleViewAdapter(private val context: Context, private val links: Array<Thing.Link>) : RecyclerView.Adapter<LinkViewHolder>() {
+class LinksRecycleViewAdapter(
+    val context: Context
+) : RecyclerView.Adapter<LinkViewHolder>() {
+
+  val links = mutableListOf<Link>()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = LinkViewHolder(
       LayoutInflater.from(parent.context)
@@ -24,6 +28,18 @@ class LinksRecycleViewAdapter(private val context: Context, private val links: A
   }
 
   override fun getItemCount() = links.size
+
+  fun add(link: Link) {
+    val size = links.size
+    links.add(link)
+    notifyItemInserted(size)
+  }
+
+  fun clear() {
+    val size = links.size
+    links.clear()
+    notifyItemRangeRemoved(0, size)
+  }
 }
 
 class LinkViewHolder(val view: View) : RecyclerView.ViewHolder(view) {

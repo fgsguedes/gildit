@@ -3,15 +3,15 @@ package com.fgsguedes.gildit.presenter
 import android.os.Bundle
 import android.util.Log
 import com.fgsguedes.gildit.contract.LinkContract
-import com.fgsguedes.gildit.model.Thing
-import com.fgsguedes.gildit.networking.SubredditApi
+import com.fgsguedes.gildit.model.Link
+import com.fgsguedes.gildit.repository.LinkRepository
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
 
 class LinksListPresenter @Inject constructor(
-    private val subredditApi: SubredditApi
+    private val linkRepository: LinkRepository
 ) : LinkContract.Presenter {
 
   lateinit var view: LinkContract.View
@@ -34,29 +34,32 @@ class LinksListPresenter @Inject constructor(
     this.view = view
   }
 
-  fun onStart() {
+  override fun onStart() {
 
-    val requestObservable = currentSubreddit?.let {
-      subredditApi.hotOf(it)
-    } ?: subredditApi.frontpage()
+    val requestObservable = with(currentSubreddit) {
+      when (this) {
+        null -> linkRepository.frontpage()
+        else -> linkRepository.hotOf(this)
+      }
+    }
 
     subscribe(requestObservable)
   }
 
-  fun okPickSubredditClicked() {
+  override fun okPickSubredditClicked() {
     view.openPickSubredditDialog()
   }
 
-  fun onNewSubredditChosen(subreddit: String) {
+  override fun onNewSubredditChosen(subreddit: String) {
     currentSubreddit = subreddit
 
     view.updateTitle(subreddit)
     view.clearList()
 
-    subscribe(subredditApi.hotOf(subreddit))
+    subscribe(linkRepository.hotOf(subreddit))
   }
 
-  private fun subscribe(observable: Observable<Array<Thing.Link>>) {
+  private fun subscribe(observable: Observable<Link>) {
     observable
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
